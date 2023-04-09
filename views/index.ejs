@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Weather Forecast</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <fieldset>
+            <form action="/" method="post">
+                <input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>
+                <input type="submit" class="ghost-button" value="Get Weather">
+            </form>
+        </fieldset>
+        <%if( weather !== null){ %>
+            <div class="grid">
+                <p>
+                    <%= place %>
+                </p>
+                <p class="text-muted small">
+                    <%= timezone %>
+                </p>
+            </div>
+            <br>
+
+            <div class="card-group card">
+                <div class="card card-accent-dark" >
+                    <div class="card-header">Today</div>
+                    <div class="card-body text-dark">
+                        <img src="<%= icon %>" alt="Weather-Icon">
+                        <h5 class="card-title"><i class="fa-solid fa-temperature-three-quarters"></i>Temperature</h5>
+                        <p class="card-text">
+                            <%= temp %>°C
+                        </p>
+                        <h5 class="card-title">Main</h5>
+                        <p class="card-text">
+                            <%= main %>
+                        </p>
+                        <h5 class="card-title">Description</h5>
+                        <p class="card-text">
+                            <%= description %>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-10">
+                    <div class="row">
+                        <div class="card-group">
+                            <% for( let i = 1; i < 8; i++ ) { %>
+                                <div class="card">
+                                    <div class="card-header"><%= weekDay[i] %></div>
+                                    <img src="<%= fIcon[i] %>" alt="Weather-Icon">
+                                    <div class="card-footer"><%=fTempMin[i] %>°C <%=fTempMax[i] %>°C</div>  
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <br>                    
+                    <div class="card-deck">
+                        <div class="card card-accent-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">UV Index</div>
+                            <div class="card-body text-dark">
+                                <p class="card-text"><%= uvi %></p>
+                            </div>
+                        </div>
+                        <div class="card card-accent-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Humidity</div>
+                            <div class="card-body text-dark">
+                                <p class="card-text">
+                                    <%= humidity %>%
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card card-accent-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Cloudiness</div>
+                            <div class="card-body text-dark">
+                                <p class="card-text">
+                                    <%= clouds %>%
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card card-accent-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Visibility</div>
+                            <div class="card-body text-dark">
+                                <p class="card-text">
+                                    <%= visibility %>m
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-deck">
+                        <div class="card card-accent-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Air quality</div>
+                            <div class="card-body text-dark">
+                                    <p class="card-text"><%= aqi %></p>
+                            </div>
+                        </div>
+                        <div class="card card-accent-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Wind speed</div>
+                            <div class="card-body text-dark">
+                                <p class="card-text">
+                                    <%= windSpeed %>m/s
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card card-accent-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Wind direction</div>
+                            <div class="card-body text-dark">
+                                <p class="card-text">
+                                    <%= windDir %>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card card-accent-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Pressure</div>
+                            <div class="card-body text-dark">
+                                <p class="card-text">
+                                    <%= pressure %>mhPa
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+
+                        <% if(error !== null){ %>
+                            <p>
+                                <%= error %>
+                            </p>
+                            <% } %>                
+            </div>
+                
+                
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+                <script src="https://kit.fontawesome.com/604d486851.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
