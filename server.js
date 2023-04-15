@@ -29,7 +29,7 @@ app.post('/', function(req, res) {
     // Request for data using the URL
     request(url, function(err, response, body) {
         
-        // On return, check the json data fetched
+
         if (err) {
             res.render('index', { weather: null, error: 'Error, please try again' });
         } else {
@@ -39,11 +39,11 @@ app.post('/', function(req, res) {
             if (weather.main == undefined) {
                 res.render('index', { weather: null, error: 'Error, please try again' });
             } else {
-                // we shall use the data got to set up our output
+
                 let regionNames = new Intl.DisplayNames(['en'], {type: 'region'});
                 let place = `${weather.name}, ${regionNames.of(weather.sys.country)}`,
-                    /* We shall calculate the current timezone using the data fetched*/
-                    weatherTimezone = `${new Date(weather.dt * 1000)}`;
+
+                    // weatherTimezone = `${new Date(weather.dt * 1000)}`;
                 var weatherIcon = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`,
                     lat=`${weather.coord.lat}`,
                     lon=`${weather.coord.lon}`;

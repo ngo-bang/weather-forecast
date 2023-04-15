@@ -25,9 +25,6 @@
                 <p>
                     <%= place %>
                 </p>
-                <p class="text-muted small">
-                    <%= timezone %>
-                </p>
             </div>
             <br>
 
@@ -54,10 +51,13 @@
                     <div class="row">
                         <div class="card-group">
                             <% for( let i = 1; i < 8; i++ ) { %>
-                                <div class="card">
+                                <div class="card" style="min-width: 8.243rem;">
                                     <div class="card-header"><%= weekDay[i] %></div>
                                     <img src="<%= fIcon[i] %>" alt="Weather-Icon">
-                                    <div class="card-footer"><%=fTempMin[i] %>°C <%=fTempMax[i] %>°C</div>  
+                                    <div class="card-footer">
+                                        <%=fTempMin[i] %>°C <br>
+                                        <%=fTempMax[i] %>°C
+                                    </div>  
                                 </div>
                             <% } %>
                         </div>
